@@ -13,6 +13,7 @@ public class ExampleProjectController {
 
     private Calculator calculator;
 
+
     private void initCalculator(String operator) {
         calculator = new Calculator(operator);
     }

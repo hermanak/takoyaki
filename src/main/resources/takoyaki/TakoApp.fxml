@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="416.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="takoyaki.TakoyakiController">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="351.0" prefWidth="745.0" VBox.vgrow="ALWAYS">
+      <children>
+            <!-- knappene for spillet -->
+            <Button fx:id="humanCard1" defaultButton="true" layoutX="72.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonClick1" prefHeight="86.0" prefWidth="48.0" text="1" />
+            <Button fx:id="humanCard2" defaultButton="true" layoutX="131.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonClick2" prefHeight="86.0" prefWidth="48.0" text="2" />
+            <Button fx:id="humanCard3" defaultButton="true" layoutX="196.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonClick3" prefHeight="86.0" prefWidth="48.0" text="3" />
+            <Button fx:id="humanCard4" defaultButton="true" layoutX="255.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonClick4" prefHeight="86.0" prefWidth="48.0" text="4" />
+            <Button fx:id="humanCard5" defaultButton="true" layoutX="320.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonClick5" prefHeight="86.0" prefWidth="48.0" text="5" />
+            <Button fx:id="humanCard6" defaultButton="true" layoutX="378.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonClick6" prefHeight="86.0" prefWidth="48.0" text="6" />
+            <Button fx:id="humanCard7" defaultButton="true" layoutX="439.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonClick7" prefHeight="86.0" prefWidth="48.0" text="7" />
+            <Button fx:id="humanCard8" defaultButton="true" layoutX="501.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonClick8" prefHeight="86.0" prefWidth="48.0" text="8" />
+            <Button fx:id="humanCard9" defaultButton="true" layoutX="559.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonClick9" prefHeight="86.0" prefWidth="48.0" text="9" />
+            <Button fx:id="humanCard10" defaultButton="true" layoutX="614.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonClick10" prefHeight="86.0" prefWidth="48.0" text="10" />
+            
+            <!-- rektangler som skal forestille kort -->
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="86.0" layoutX="24.0" layoutY="177.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="86.0" layoutX="667.0" layoutY="177.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="72.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="131.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="196.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="255.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="320.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="379.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="443.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="502.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="560.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="619.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#1fff55" height="86.0" layoutX="354.0" layoutY="177.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+
+            <Label fx:id="deck" layoutX="365.0" layoutY="212.0" text="Deck" />
+            <Label fx:id="computerCard1" layoutX="76.0" layoutY="74.0" prefHeight="38.0" prefWidth="40.0" text="CCard1" />
+            <Label fx:id="computerCard2" layoutX="134.0" layoutY="74.0" prefHeight="38.0" prefWidth="40.0" text="CCard2" />
+            <Label fx:id="computerCard3" layoutX="200.0" layoutY="74.0" prefHeight="38.0" prefWidth="40.0" text="CCard3" />
+            <Label fx:id="computerCard4" layoutX="258.0" layoutY="74.0" prefHeight="38.0" prefWidth="40.0" text="CCard4" />
+            <Label fx:id="computerCard5" layoutX="324.0" layoutY="74.0" prefHeight="38.0" prefWidth="40.0" text="CCard5" />
+            <Label fx:id="computerCard6" layoutX="382.0" layoutY="74.0" prefHeight="38.0" prefWidth="40.0" text="CCard6" />
+            <Label fx:id="computerCard7" layoutX="447.0" layoutY="74.0" prefHeight="38.0" prefWidth="40.0" text="CCard7" />
+            <Label fx:id="computerCard8" layoutX="505.0" layoutY="74.0" prefHeight="38.0" prefWidth="40.0" text="CCard8" />
+            <Label fx:id="computerCard9" layoutX="563.0" layoutY="74.0" prefHeight="38.0" prefWidth="40.0" text="CCard9" />
+            <Label fx:id="computerCard10" layoutX="622.0" layoutY="74.0" prefHeight="38.0" prefWidth="40.0" text="CCard10" />
+
+
+            <Label fx:id="humanDiscardPile" layoutX="35.0" layoutY="212.0" prefHeight="17.0" prefWidth="27.0" text="HDiscard" />
+            <Label fx:id="computerDiscardPile" layoutX="678.0" layoutY="212.0" prefHeight="17.0" prefWidth="27.0" text="CDiscard" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#26f2eb" height="86.0" layoutX="419.0" layoutY="212.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Label fx:id="humanHand" layoutX="430.0" layoutY="247.0" text="HHand" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="296.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Label fx:id="computerHand" layoutX="307.0" layoutY="178.0" text="CHand" />
+
+            <!-- skal si når de  -->
+            <Label fx:id="victor" alignment="CENTER" layoutX="111.0" layoutY="135.0" prefHeight="162.0" prefWidth="518.0" textAlignment="CENTER" underline="true">
+               <font>
+                  <Font size="44.0" />
+               </font>
+            </Label>
+            
+            
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
