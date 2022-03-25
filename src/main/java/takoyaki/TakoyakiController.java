@@ -3,7 +3,9 @@ package takoyaki;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -23,19 +25,17 @@ public class TakoyakiController {
     @FXML
     private Label deck, humanDiscardPile, computerDiscardPile, humanHand, computerHand, computerCard1, computerCard2, computerCard3, computerCard4, computerCard5, computerCard6, computerCard7, computerCard8, computerCard9, computerCard10, victor;
 
+    @FXML
+    private TextField filename;
 
     private Takoyaki takoyaki;
+    private SaveHandler saveHandler;
 
     @FXML
     private void initialize(){
         takoyaki = new Takoyaki();
-
-        updateDeck();
-        // setter alle spillerens kort på bordet
-        setAllHuman();
-
-        // setter alle datamaskinens kort på bordet
-        setAllComp();
+        saveHandler = new SaveHandler();
+        setAllCards(); 
     }
 
     @FXML
@@ -170,7 +170,17 @@ public class TakoyakiController {
         endGame(); 
     }
 
-    
+    @FXML
+    private void handleLoad() throws FileNotFoundException  {
+        takoyaki = saveHandler.load(filename.getText());
+        setAllCards(); 
+    }
+
+    @FXML
+    private void handleSave() throws FileNotFoundException  {
+        System.out.println("save");
+        saveHandler.save(filename.getText(), takoyaki);
+    }
 
     private void setHumanCard(Button currentButton, int position) {
         if(!takoyaki.getHuman().getCardAtTable(position).getFaceUp()){
@@ -345,6 +355,16 @@ public class TakoyakiController {
 
     private void updateDeck() {
         deck.setText(String.valueOf(takoyaki.getCardDeck().getCardCount()));
+    }
+
+    // setter alle kortene
+    private void setAllCards() {
+        updateDeck();
+        // setter alle spillerens kort på bordet
+        setAllHuman();
+
+        // setter alle datamaskinens kort på bordet
+        setAllComp();
     }
 
     private void endGame(){

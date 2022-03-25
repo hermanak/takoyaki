@@ -34,14 +34,16 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox prefHeight="416.0" prefWidth="745.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="takoyaki.TakoyakiController">
+<VBox prefHeight="416.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="takoyaki.TakoyakiController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="351.0" prefWidth="745.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="416.0" prefWidth="898.0" VBox.vgrow="ALWAYS">
       <children>
             <!-- knappene for spillet -->
             <Button fx:id="humanCard1" defaultButton="true" layoutX="72.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonClick1" prefHeight="86.0" prefWidth="48.0" text="1" />
@@ -90,12 +92,18 @@
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="296.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
             <Label fx:id="computerHand" layoutX="307.0" layoutY="178.0" text="CHand" />
 
-            <!-- skal si når de  -->
+            <!-- skal si resultatet av spillet  -->
             <Label fx:id="victor" alignment="CENTER" layoutX="111.0" layoutY="135.0" prefHeight="162.0" prefWidth="518.0" textAlignment="CENTER" underline="true">
                <font>
                   <Font size="44.0" />
                </font>
             </Label>
+
+            <!-- laster inn og lagrer spill -->
+            <Button layoutX="719.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleLoad" text="Load" />
+            <Button layoutX="775.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+            <TextField fx:id="filename" layoutX="715.0" layoutY="292.0" prefHeight="27.0" prefWidth="160.0" promptText="save_file" text="save_file" />
+            <Text layoutX="715.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filename:" />
             
             
       </children>

@@ -45,6 +45,11 @@ public class CardDeck {
         }
     }
 
+    // kounstruktør avhengig av Card liste. Brukes for lagring
+    public CardDeck(List<Card> cards) {
+        this.cards = cards;
+    }
+
     public int getCardCount(){
         return cards.size();
     }

@@ -10,6 +10,17 @@ public class Player {
 
     private Card temp;
 
+    public Player() {
+
+    }
+
+    // brukes til å lagre og laste inn
+    public Player(Card hand, Card discardedPile, List<Card> cardsAtTable) {
+        this.hand = hand;
+        this.discardedPile = discardedPile;
+        this.cardsAtTable = cardsAtTable;
+    }
+  
     public Card getHand() {
         return this.hand;
     }

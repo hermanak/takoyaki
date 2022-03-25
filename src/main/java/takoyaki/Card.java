@@ -12,7 +12,31 @@ public class Card {
         this.value = 0;
     }
 
+    // for når joker må definere hvilken faceUp den har
+    public Card(Boolean faceUp) {
+        this.type = 'J';
+        this.value = 0;
+        this.faceUp = faceUp;
+    }
+
     public Card(char type, int value) {
+        for (char c : JavaCharArray) {
+            if (c == type) {
+                validType = true;
+            }       
+        }
+        if(!validType){
+            throw new IllegalArgumentException("Ugyldig verdiklasse for: " + type);
+        }
+        if(value < 1 || value > 13) {
+            throw new IllegalArgumentException("Ugyldig kort verdi");
+        }
+        this.type = type;
+        this.value = value;
+    }
+
+    // brukes for lagring av kort som allerede er snudd
+    public Card(char type, int value, Boolean faceUp ) {
         for (char c : JavaCharArray) {
             if (c == type) {
                 validType = true;
@@ -26,6 +50,7 @@ public class Card {
         }
         this.type = type;
         this.value = value;
+        this.faceUp = faceUp;
     }
 
     public char getSuit() {
