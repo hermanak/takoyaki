@@ -178,8 +178,13 @@ public class TakoyakiController {
 
     @FXML
     private void handleSave() throws FileNotFoundException  {
-        System.out.println("save");
-        saveHandler.save(filename.getText(), takoyaki);
+        // save ble ikke laget for å takle tilstanden et spill er i etter at den er slutt. Derfor funker den ikke når spillet er over
+        if(!takoyaki.gameOver()){
+            saveHandler.save(filename.getText(), takoyaki);
+        }    
+        else {
+            System.out.println("Ferdige spill kan ikke lagres");
+        }
     }
 
     private void setHumanCard(Button currentButton, int position) {
@@ -281,6 +286,12 @@ public class TakoyakiController {
         System.out.println("HumanHand: " + takoyaki.getHuman().getHand());
         if(takoyaki.getHuman().getHand() == null) {
             takoyaki.setHumanTurn(false);
+            // gir maskinen ny Hand
+            if(takoyaki.getComp().getHand() == null) {
+                takoyaki.getCardDeck().giveNewHand(takoyaki.getComp());
+                updateDeck();
+                setComputerHand();
+            }
         }
         System.out.println(takoyaki.getHumanTurn());
 
@@ -302,33 +313,26 @@ public class TakoyakiController {
                 takoyaki.getComp().switchCard(takoyaki.getComp().getHand().getFace());
             }   
 
-            System.out.println(takoyaki.getComp().getHand().getSuitAndFace());
+            System.out.println("ComputerHand" + takoyaki.getComp().getHand().getSuitAndFace());
             System.out.println(takoyaki.getComp().getCardsAtTable());
 
             // letter enn å bytte ut bare kortet man må bytte
             setAllComp();
-            
+            // kaster ubrukelig hand
             throwUselessComputerHand();
             TimeUnit.SECONDS.sleep(1);
         }
 
         // for å gjøre humanTurn sann igjen
         takoyaki.setHumanTurn(true);
-        
-        
-        // gir maskinen ny Hand
-        if(takoyaki.getComp().getHand() == null) {
-            takoyaki.getCardDeck().giveNewHand(takoyaki.getComp());
-            updateDeck();
-            setComputerHand();
-        }
 
         // gir spilleren ny Hand
-        if(!tempHand.equals(takoyaki.getComp().getHand()) || takoyaki.getComp().getHand() == null){
+        if(takoyaki.getComp().getHand() == null){
             System.out.println("Gir ny hand");
             takoyaki.getCardDeck().giveNewHand(takoyaki.getHuman());
             setHumanHand();
         }
+        
         System.out.println("Ferdig");
     }
 

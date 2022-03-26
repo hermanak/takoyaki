@@ -42,16 +42,21 @@ public class SaveHandler implements ISaveHandler {
             }
 
             // skriver hånden til human
-            writer.println("* hand");   
-            if(game.getHuman().getHand().getSuit() == 'J'){
-                writer.println("J");
+            writer.println("* hand");  
+            
+            if(game.getHuman().getHand() == null){
+                writer.println("null");
             }
             else {
-                
-                writer.println(game.getHuman().getHand().getSuit());
-                writer.println(game.getHuman().getHand().getFace());
-            }       
-                
+                if(game.getHuman().getHand().getSuit() == 'J'){
+                    writer.println("J");
+                }
+                else {
+                    
+                    writer.println(game.getHuman().getHand().getSuit());
+                    writer.println(game.getHuman().getHand().getFace());
+                }   
+            }  
             
 
             // skriver discardpile. Skjekker om det er null først i tilfelle spillet akkurat har startet
@@ -82,15 +87,21 @@ public class SaveHandler implements ISaveHandler {
             }
 
             // skriver hånden til computer
-            writer.println("* hand");   
-            if(game.getComp().getHand().getSuit() == 'J'){
-                writer.println("J");
+            writer.println("* hand");  
+            if(game.getComp().getHand() == null){
+                writer.println("null");
             }
             else {
+                if(game.getComp().getHand().getSuit() == 'J'){
+                    writer.println("J");
+                }
+                else {
+                    
+                    writer.println(game.getComp().getHand().getSuit());
+                    writer.println(game.getComp().getHand().getFace());
+                }   
+            } 
                 
-                writer.println(game.getComp().getHand().getSuit());
-                writer.println(game.getComp().getHand().getFace());
-            }       
                 
             
 
@@ -126,6 +137,7 @@ public class SaveHandler implements ISaveHandler {
         // Booleans holder styr på hvilke verdier man bestemmer for t1
         Boolean loadCardDeck = true;
         Boolean loadHuman = true;
+        Boolean handChecked = false;
         try (Scanner scanner = new Scanner(new File(getFilePath(filename)))) {
             t1 = new Takoyaki();
             while (scanner.hasNextLine()) {
@@ -155,23 +167,30 @@ public class SaveHandler implements ISaveHandler {
                     // koden for å finne kortene human og computer skal ha. Først defineres human og deretter computer
                     else {
                         // definerer hand
-                        if(cards.size() == 10 && hand == null) {
-                            if(type == 'J') {
-                                // her er Joker oppe fordi det gir ikke mening at man ikke kan se hånden
-                                hand = new Card(true);
-                                cards.add(tempCard);
-                                type = ' ';
+                        if(cards.size() == 10 && !handChecked ) {
+                            // n blir ikke brukt andre steder og type er en enkel char så det er lettere å sammenligne det direkte
+                            if(type == 'n'){
+                                tempCard = null;
                             }
                             else {
-                                value = scanner.nextInt();
-                                hand = new Card(type, value, true);;
-                                type = ' ';
-                                value = -1;
-                            } 
+                                if(type == 'J') {
+                                    // her er Joker oppe fordi det gir ikke mening at man ikke kan se hånden
+                                    hand = new Card(true);
+                                    cards.add(tempCard);
+                                    type = ' ';
+                                }
+                                else {
+                                    value = scanner.nextInt();
+                                    hand = new Card(type, value, true);;
+                                    type = ' ';
+                                    value = -1;
+                                } 
+                            }            
+                            handChecked = true;
                         }
                         // definerer discard
-                        else if (cards.size() == 10 && hand != null) {
-                            // n blir ikke brukt andre steder og type er en enkel char så det er lettere å abre sammenligne det direkte
+                        else if (cards.size() == 10 ) {
+                            // n blir ikke brukt andre steder og type er en enkel char så det er lettere å sammenligne det direkte
                             if(type == 'n'){
                                 tempCard = null;
                             }
@@ -182,6 +201,8 @@ public class SaveHandler implements ISaveHandler {
                                 value = -1;
                                 
                             }
+                            // slik at koden kjøres riktig flere ganger
+                            handChecked = false;
                         }
                         // det under definerer kortene på bordet
                         else {
