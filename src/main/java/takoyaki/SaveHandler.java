@@ -124,7 +124,6 @@ public class SaveHandler implements ISaveHandler {
         int value = -1;
         Boolean faceUp = null;
         // Booleans holder styr på hvilke verdier man bestemmer for t1
-        Boolean loadCard = false;
         Boolean loadCardDeck = true;
         Boolean loadHuman = true;
         try (Scanner scanner = new Scanner(new File(getFilePath(filename)))) {
@@ -135,60 +134,50 @@ public class SaveHandler implements ISaveHandler {
                     continue;
                 }
                 else if ( line.startsWith("*")) {
-                    loadCard= true;
-                }
-                else if(loadCard){
+                    // alle if kodene trenger type og den kommer alltid først etter *
+                    type = scanner.nextLine().charAt(0);
                     // koden her er for kort til CardDeck
-                    if(loadCardDeck) {    
-                        type = line.charAt(0);
+                    if(loadCardDeck) {                          
                         // joker har alltid samme verdi
                         if(type == 'J') {
                             tempCard = new Card();
                             cards.add(tempCard);
-                            loadCard = false;
                             type = ' ';
                         }
                         else {
                             value = scanner.nextInt();
                             tempCard = new Card(type, value);
                             cards.add(tempCard);
-                            loadCard = false;
                             type = ' ';
                             value = -1;
                         }
                     }
-                    // koden for å finne kortene human skal ha
-                    else if(loadHuman) {
+                    // koden for å finne kortene human og computer skal ha. Først defineres human og deretter computer
+                    else {
                         // definerer hand
                         if(cards.size() == 10 && hand == null) {
-
-                            type = line.charAt(0);
                             if(type == 'J') {
                                 // her er Joker oppe fordi det gir ikke mening at man ikke kan se hånden
                                 hand = new Card(true);
                                 cards.add(tempCard);
-                                loadCard = false;
                                 type = ' ';
                             }
                             else {
                                 value = scanner.nextInt();
                                 hand = new Card(type, value, true);;
-                                loadCard = false;
                                 type = ' ';
                                 value = -1;
                             } 
                         }
                         // definerer discard
                         else if (cards.size() == 10 && hand != null) {
-                            if(line.equals("null")){
+                            // n blir ikke brukt andre steder og type er en enkel char så det er lettere å abre sammenligne det direkte
+                            if(type == 'n'){
                                 tempCard = null;
-                                loadCard = false;
                             }
                             else {
-                                type = line.charAt(0);
                                 value = scanner.nextInt();
                                 tempCard = new Card(type, value, true);;
-                                loadCard = false;
                                 type = ' ';
                                 value = -1;
                                 
@@ -196,13 +185,12 @@ public class SaveHandler implements ISaveHandler {
                         }
                         // det under definerer kortene på bordet
                         else {
-                            type = line.charAt(0);
+
                             // jokeren står sammen med om den er snudd opp eller ned
                             if(type == 'J') {
                                 faceUp = scanner.nextBoolean();
                                 tempCard = new Card(faceUp);
                                 cards.add(tempCard);
-                                loadCard = false;
                                 type = ' ';
                             }
                             else {
@@ -210,81 +198,14 @@ public class SaveHandler implements ISaveHandler {
                                 faceUp = scanner.nextBoolean();
                                 tempCard = new Card(type, value, faceUp);
                                 cards.add(tempCard);
-                                loadCard = false;
                                 type = ' ';
                                 value = -1;
                                 faceUp = null;
                             }    
                         }
-
                     }
-                    // koden for å finne kortene computer skal ha
-                    else {
-
-                     // definerer hand
-                     if(cards.size() == 10 && hand == null) {
-
-                        type = line.charAt(0);
-                        if(type == 'J') {
-                            // her er Joker oppe fordi det gir ikke mening at man ikke kan se hånden
-                            hand = new Card(true);
-                            cards.add(tempCard);
-                            loadCard = false;
-                            type = ' ';
-                        }
-                        else {
-                            value = scanner.nextInt();
-                            hand = new Card(type, value, true);;
-                            loadCard = false;
-                            type = ' ';
-                            value = -1;
-                        } 
-                    }
-                    // definerer discard
-                    else if (cards.size() == 10 && hand != null) {
-                        if(line.equals("null")){
-                            tempCard = null;
-                            loadCard = false;
-                        }
-                        else {
-                            type = line.charAt(0);
-                            value = scanner.nextInt();
-                            tempCard = new Card(type, value, true);;
-                            loadCard = false;
-                            type = ' ';
-                            value = -1;
-                            
-                        }
-                    }
-                    // det under definerer kortene på bordet
-                    else {
-                        type = line.charAt(0);
-                        // jokeren står sammen med om den er snudd opp eller ned
-                        if(type == 'J') {
-                            faceUp = scanner.nextBoolean();
-                            tempCard = new Card(faceUp);
-                            cards.add(tempCard);
-                            loadCard = false;
-                            type = ' ';
-                        }
-                        else {
-                            value = scanner.nextInt();
-                            faceUp = scanner.nextBoolean();
-                            tempCard = new Card(type, value, faceUp);
-                            cards.add(tempCard);
-                            loadCard = false;
-                            type = ' ';
-                            value = -1;
-                            faceUp = null;
-                        }    
-                    }   
-
-                    }
-                    
                 }
-                
-                // separert slik at koden ovenfor ikke stopper den
-                if (line.startsWith("!")) {
+                else if (line.startsWith("!")) {
                     if(loadCardDeck){
                         cD1 = new CardDeck(cards);
                         t1.setCardDeck(cD1);
