@@ -82,9 +82,4 @@ public class Card {
         return res;
     }
     
-    public static void main(String[] args) {
-        Card test = new Card();
-        System.out.println(test);
-        System.out.println(test.getSuitAndFace());
-    }
 }

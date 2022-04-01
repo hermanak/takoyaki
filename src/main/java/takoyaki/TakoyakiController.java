@@ -51,6 +51,7 @@ public class TakoyakiController {
         System.out.println("HumanHand: " + takoyaki.getHuman().getHand());
         endGame();
         takoyaki.giveHumanNewHand();
+        setHumanHand();
     }
 
     @FXML
@@ -64,6 +65,7 @@ public class TakoyakiController {
         }
         endGame(); 
         takoyaki.giveHumanNewHand();
+        setHumanHand();
     }
 
     @FXML
@@ -77,6 +79,7 @@ public class TakoyakiController {
         }
         endGame(); 
         takoyaki.giveHumanNewHand();
+        setHumanHand();
     }
 
     @FXML
@@ -90,6 +93,7 @@ public class TakoyakiController {
         }
         endGame(); 
         takoyaki.giveHumanNewHand();
+        setHumanHand();
     }
 
     @FXML
@@ -103,6 +107,7 @@ public class TakoyakiController {
         }
         endGame(); 
         takoyaki.giveHumanNewHand();
+        setHumanHand();
     }
 
     @FXML
@@ -116,6 +121,7 @@ public class TakoyakiController {
         }
         endGame(); 
         takoyaki.giveHumanNewHand();
+        setHumanHand();
     }
 
     @FXML
@@ -129,6 +135,7 @@ public class TakoyakiController {
         }
         endGame(); 
         takoyaki.giveHumanNewHand();
+        setHumanHand();
     }
 
     @FXML
@@ -142,6 +149,7 @@ public class TakoyakiController {
         }
         endGame(); 
         takoyaki.giveHumanNewHand();
+        setHumanHand();
     }
 
     @FXML
@@ -155,6 +163,7 @@ public class TakoyakiController {
         }
         endGame(); 
         takoyaki.giveHumanNewHand();
+        setHumanHand();
     }
 
     @FXML
@@ -168,6 +177,7 @@ public class TakoyakiController {
         }
         endGame(); 
         takoyaki.giveHumanNewHand();
+        setHumanHand();
     }
 
     @FXML

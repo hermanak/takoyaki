@@ -100,13 +100,13 @@ public class Takoyaki {
                 comp.switchCard(comp.getHand().getFace());
             }   
 
-            System.out.println("ComputerHand" + comp.getHand().toString());
+            System.out.println("ComputerHand" + comp.getHand());
             System.out.println(comp.getCardsAtTable());
 
             // kaster ubrukelig hand
             comp.discardHand();
 
-            System.out.println("ComputerHand etter mulig discard" + comp.getHand().toString());
+            System.out.println("ComputerHand etter mulig discard" + comp.getHand());
             System.out.println(comp.getCardsAtTable());
         }
 
