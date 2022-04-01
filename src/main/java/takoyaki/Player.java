@@ -8,8 +8,6 @@ public class Player {
     private Card discardedPile;
     private List<Card> cardsAtTable = new ArrayList<Card>();
 
-    private Card temp;
-
     public Player() {
 
     }
@@ -68,6 +66,7 @@ public class Player {
         if(position > 0 && position < 11) {
             if(position == hand.getFace() || hand.getFace() == 0) {
                 if(!cardAlreadyFlipped(position)){
+                    Card temp;
                     temp = hand;
                     hand = cardsAtTable.get(position - 1);
                     hand.flipCardUp();

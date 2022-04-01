@@ -49,8 +49,8 @@ public class TakoyakiController {
             setHumanCard(humanCard1, 0);
         }   
         System.out.println("HumanHand: " + takoyaki.getHuman().getHand());
-        theAIMove(); 
         endGame();
+        takoyaki.giveHumanNewHand();
     }
 
     @FXML
@@ -62,8 +62,8 @@ public class TakoyakiController {
             throwUselessHumanHand();
             setHumanCard(humanCard2, 1);
         }
-        theAIMove();
         endGame(); 
+        takoyaki.giveHumanNewHand();
     }
 
     @FXML
@@ -75,8 +75,8 @@ public class TakoyakiController {
             throwUselessHumanHand();
             setHumanCard(humanCard3, 2);
         }
-        theAIMove();
         endGame(); 
+        takoyaki.giveHumanNewHand();
     }
 
     @FXML
@@ -88,8 +88,8 @@ public class TakoyakiController {
             throwUselessHumanHand();
             setHumanCard(humanCard4, 3);
         }
-        theAIMove();
         endGame(); 
+        takoyaki.giveHumanNewHand();
     }
 
     @FXML
@@ -101,8 +101,8 @@ public class TakoyakiController {
             throwUselessHumanHand();
             setHumanCard(humanCard5, 4);
         }
-        theAIMove();
         endGame(); 
+        takoyaki.giveHumanNewHand();
     }
 
     @FXML
@@ -114,8 +114,8 @@ public class TakoyakiController {
             throwUselessHumanHand();
             setHumanCard(humanCard6, 5);
         }
-        theAIMove();
         endGame(); 
+        takoyaki.giveHumanNewHand();
     }
 
     @FXML
@@ -127,8 +127,8 @@ public class TakoyakiController {
             throwUselessHumanHand();
             setHumanCard(humanCard7, 6);
         }
-        theAIMove();
         endGame(); 
+        takoyaki.giveHumanNewHand();
     }
 
     @FXML
@@ -140,8 +140,8 @@ public class TakoyakiController {
             throwUselessHumanHand();
             setHumanCard(humanCard8, 7);
         }
-        theAIMove();
         endGame(); 
+        takoyaki.giveHumanNewHand();
     }
 
     @FXML
@@ -153,8 +153,8 @@ public class TakoyakiController {
             throwUselessHumanHand();
             setHumanCard(humanCard9, 8);
         }
-        theAIMove();
         endGame(); 
+        takoyaki.giveHumanNewHand();
     }
 
     @FXML
@@ -166,8 +166,8 @@ public class TakoyakiController {
             throwUselessHumanHand();
             setHumanCard(humanCard10, 9);
         }
-        theAIMove();
         endGame(); 
+        takoyaki.giveHumanNewHand();
     }
 
     @FXML
@@ -192,13 +192,13 @@ public class TakoyakiController {
             currentButton.setText("Down");
         }
         else{
-            currentButton.setText(takoyaki.getHuman().getCardAtTable(position).getSuitAndFace());
+            currentButton.setText(takoyaki.getHuman().getCardAtTable(position).toString());
         }
     }
 
     private void setHumanHand() {
         if(takoyaki.getHuman().getHand() != null) {
-            humanHand.setText(takoyaki.getHuman().getHand().getSuitAndFace());
+            humanHand.setText(takoyaki.getHuman().getHand().toString());
         }
         else {
             humanHand.setText("empty");
@@ -240,7 +240,7 @@ public class TakoyakiController {
 
     private void setComputerHand() {
         if(takoyaki.getComp().getHand() != null) {
-            computerHand.setText(takoyaki.getComp().getHand().getSuitAndFace());     
+            computerHand.setText(takoyaki.getComp().getHand().toString());     
         }
         else {
             computerHand.setText("empty");
@@ -250,7 +250,7 @@ public class TakoyakiController {
 
     private void setHumanDiscard() {
         if(takoyaki.getHuman().getDiscardedPile() != null) {
-            humanDiscardPile.setText(takoyaki.getHuman().getDiscardedPile().getSuitAndFace());    
+            humanDiscardPile.setText(takoyaki.getHuman().getDiscardedPile().toString());    
         }
         else {
             humanDiscardPile.setText("empty");
@@ -259,7 +259,7 @@ public class TakoyakiController {
 
     private void setComputerDiscard() {
         if(takoyaki.getComp().getDiscardedPile() != null) {
-            computerDiscardPile.setText(takoyaki.getComp().getDiscardedPile().getSuitAndFace());   
+            computerDiscardPile.setText(takoyaki.getComp().getDiscardedPile().toString());   
         }
         else {
             computerDiscardPile.setText("empty");
@@ -276,64 +276,15 @@ public class TakoyakiController {
             currentLabel.setText("Down");
         }
         else{
-            currentLabel.setText(takoyaki.getComp().getCardAtTable(position).getSuitAndFace());
+            currentLabel.setText(takoyaki.getComp().getCardAtTable(position).toString());
         }
     }
 
-    private void theAIMove() throws InterruptedException {
-        System.out.println("Startet");
-        System.out.println(takoyaki.getHumanTurn());
-        System.out.println("HumanHand: " + takoyaki.getHuman().getHand());
-        if(takoyaki.getHuman().getHand() == null) {
-            takoyaki.setHumanTurn(false);
-            // gir maskinen ny Hand
-            if(takoyaki.getComp().getHand() == null) {
-                takoyaki.getCardDeck().giveNewHand(takoyaki.getComp());
-                updateDeck();
-                setComputerHand();
-            }
-        }
-        System.out.println(takoyaki.getHumanTurn());
-
-        Card tempHand = takoyaki.getComp().getHand();
-
-        while(!takoyaki.getHumanTurn() && !takoyaki.gameOver() && takoyaki.getComp().getHand() != null) {  
-            tempHand = takoyaki.getComp().getHand();
-            // hva maskinen skal gjøre med jokeren
-            // gjør "tilfeldige" valg
-            if(takoyaki.getComp().getHand().getFace() == 0) {
-                List<Integer> liste = new ArrayList<Integer>();
-
-                for (Integer n : takoyaki.getComp().possibleMoves()) {
-                    liste.add(n);
-                }
-                takoyaki.getComp().switchCard(liste.get(Takoyaki.getRandomNumberInRange(0, liste.size() - 1)));
-            }
-            else if(takoyaki.getComp().getHand().getFace() < 11) {               
-                takoyaki.getComp().switchCard(takoyaki.getComp().getHand().getFace());
-            }   
-
-            System.out.println("ComputerHand" + takoyaki.getComp().getHand().getSuitAndFace());
-            System.out.println(takoyaki.getComp().getCardsAtTable());
-
-            // letter enn å bytte ut bare kortet man må bytte
-            setAllComp();
-            // kaster ubrukelig hand
-            throwUselessComputerHand();
-            TimeUnit.SECONDS.sleep(1);
-        }
-
-        // for å gjøre humanTurn sann igjen
-        takoyaki.setHumanTurn(true);
-
-        // gir spilleren ny Hand
-        if(takoyaki.getComp().getHand() == null){
-            System.out.println("Gir ny hand");
-            takoyaki.getCardDeck().giveNewHand(takoyaki.getHuman());
-            setHumanHand();
-        }
-        
-        System.out.println("Ferdig");
+    // klarte ikke å oppdatere kortene i samtid og kan ikke ha mye logikk her. Flytter mye over til Takoyaki senere
+    // kanskje lage en ny klasse ComputerPlayer som arver fra Player
+    private void setAfterAI() throws InterruptedException {
+        takoyaki.theAIMove();
+        setAllCards();
     }
 
     private void throwUselessHumanHand() throws InterruptedException {
@@ -343,18 +294,18 @@ public class TakoyakiController {
             System.out.println("Nytt kast");
             setHumanDiscard();
         }
-        theAIMove(); 
+        setAfterAI(); 
         
     }
 
+    // unødvenig fordi AI oppdateres bare etter ferdig
     private void throwUselessComputerHand() {
         takoyaki.getComp().discardHand();
         setComputerHand();
         if(takoyaki.getComp().getDiscardedPile() != null) {
             setComputerDiscard();
             setComputerHand();
-        }   
-        
+        }    
     }
 
     private void updateDeck() {
@@ -373,11 +324,8 @@ public class TakoyakiController {
 
     private void endGame(){
         if(takoyaki.gameOver()) {
-
-            updateDeck();
-            setAllHuman();
-            setAllComp();
-
+            // for å være sikker på at alle kort er oppdatert
+            setAllCards();
             if(takoyaki.getHuman().allCardsFlipped()) {
                 victor.setText("YOU WON!");
             }

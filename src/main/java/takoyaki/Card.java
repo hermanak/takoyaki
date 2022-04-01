@@ -62,11 +62,6 @@ public class Card {
         return value;
     }
 
-    // gjøre det lettere å skaffe begge verdier
-    public String getSuitAndFace() {
-        return type + String.valueOf(value);
-    }
-
     public Boolean getFaceUp() {
         return faceUp;
     }
@@ -87,4 +82,9 @@ public class Card {
         return res;
     }
     
+    public static void main(String[] args) {
+        Card test = new Card();
+        System.out.println(test);
+        System.out.println(test.getSuitAndFace());
+    }
 }
