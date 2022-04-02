@@ -274,6 +274,7 @@ public class TakoyakiController {
     // kanskje lage en ny klasse ComputerPlayer som arver fra Player
     private void setAfterAI() throws InterruptedException {
         takoyaki.theAIMove();
+        TimeUnit.SECONDS.sleep(1);
         setAllCards();
     }
 
