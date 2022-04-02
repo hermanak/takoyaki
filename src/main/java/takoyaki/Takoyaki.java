@@ -7,14 +7,14 @@ import java.util.Random;
 public class Takoyaki {
     private CardDeck cardDeck;
     private Player human;
-    private Player comp;
+    private ComputerPlayer comp;
     private Boolean humanTurn;
 
 
     public Takoyaki() {
         cardDeck = new CardDeck(13, 2);
         human = new Player();
-        comp = new Player();
+        comp = new ComputerPlayer();
         humanTurn = true;
         int randomShuffle = getRandomNumberInRange(1, 5);
         for (int i = 0; i < randomShuffle; i++) {
@@ -53,7 +53,7 @@ public class Takoyaki {
         return this.comp;
     }
 
-    public void setComp(Player comp) {
+    public void setComp(ComputerPlayer comp) {
         this.comp = comp;
     }
 
@@ -118,6 +118,7 @@ public class Takoyaki {
         System.out.println("Ferdig");
     }
 
+    // bør prøve å få denne inn i AI, men finner ut av noe
     public void giveHumanNewHand() {
         // gir spilleren ny Hand
         if(human.getHand() == null){
@@ -127,9 +128,10 @@ public class Takoyaki {
     }
 
     // hentet fra her: https://mkyong.com/java/java-generate-random-integers-in-a-range/
-    public static int getRandomNumberInRange(int min, int max) {
+    private static int getRandomNumberInRange(int min, int max) {
 
-		if (min >= max) {
+        // er større for at hvis det bare er et alternativ går fint
+		if (min > max) {
 			throw new IllegalArgumentException("max must be greater than min");
 		}
 

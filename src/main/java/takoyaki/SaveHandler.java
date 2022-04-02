@@ -242,8 +242,9 @@ public class SaveHandler implements ISaveHandler {
                         hand = null;
                     }
                     else {
-                        player = new Player(hand, tempCard, cards);
-                        t1.setComp(player);
+                        // trenger hjelp her
+                        player = new ComputerPlayer(hand, tempCard, cards);
+                        t1.setComp((ComputerPlayer) player);
                     }
                 }
                 

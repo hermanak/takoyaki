@@ -35,7 +35,7 @@ public class Card {
         this.value = value;
     }
 
-    // brukes for lagring av kort som allerede er snudd
+    // brukes for lagring av kort der det varier om de er snudd eller ikke
     public Card(char type, int value, Boolean faceUp ) {
         for (char c : JavaCharArray) {
             if (c == type) {
@@ -47,6 +47,9 @@ public class Card {
         }
         if(value < 1 || value > 13) {
             throw new IllegalArgumentException("Ugyldig kort verdi");
+        }
+        if(faceUp == null) {
+            throw new IllegalArgumentException("Et kort må være snudd opp eller ned");
         }
         this.type = type;
         this.value = value;
@@ -72,7 +75,7 @@ public class Card {
             faceUp = true;
         }
         else{
-            throw new IllegalArgumentException("Kortet er allerede synlig!");
+            throw new IllegalStateException("Kortet er allerede synlig!");
         }
     }
 

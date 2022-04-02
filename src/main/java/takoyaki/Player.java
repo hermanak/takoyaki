@@ -115,15 +115,5 @@ public class Player {
     }
 
 
-    public List<Integer>  possibleMoves(){
-        List<Integer> liste = new ArrayList<Integer>();
-
-        for (int i = 0; i < 10; i++) {
-            if(!this.getCardAtTable(i).getFaceUp()) {
-                liste.add(i + 1);
-            }
-        }
-        return liste;
-    }
 
 }
