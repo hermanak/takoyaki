@@ -113,18 +113,13 @@ public class Takoyaki {
         // for å gjøre humanTurn sann igjen
         humanTurn = true;
 
-        
-        
-        System.out.println("Ferdig");
-    }
-
-    // bør prøve å få denne inn i AI, men finner ut av noe
-    public void giveHumanNewHand() {
         // gir spilleren ny Hand
-        if(human.getHand() == null){
+        if(human.getHand() == null && !gameOver()){
             System.out.println("Gir ny hand");
             cardDeck.giveNewHand(human);
         }
+        
+        System.out.println("Ferdig");
     }
 
     // hentet fra her: https://mkyong.com/java/java-generate-random-integers-in-a-range/

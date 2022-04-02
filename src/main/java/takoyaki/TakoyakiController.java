@@ -50,7 +50,7 @@ public class TakoyakiController {
         }   
         System.out.println("HumanHand: " + takoyaki.getHuman().getHand());
         endGame();
-        takoyaki.giveHumanNewHand();
+        
         setHumanHand();
     }
 
@@ -64,7 +64,7 @@ public class TakoyakiController {
             setHumanCard(humanCard2, 1);
         }
         endGame(); 
-        takoyaki.giveHumanNewHand();
+        
         setHumanHand();
     }
 
@@ -78,7 +78,7 @@ public class TakoyakiController {
             setHumanCard(humanCard3, 2);
         }
         endGame(); 
-        takoyaki.giveHumanNewHand();
+        
         setHumanHand();
     }
 
@@ -92,7 +92,7 @@ public class TakoyakiController {
             setHumanCard(humanCard4, 3);
         }
         endGame(); 
-        takoyaki.giveHumanNewHand();
+        
         setHumanHand();
     }
 
@@ -106,7 +106,7 @@ public class TakoyakiController {
             setHumanCard(humanCard5, 4);
         }
         endGame(); 
-        takoyaki.giveHumanNewHand();
+        
         setHumanHand();
     }
 
@@ -120,7 +120,7 @@ public class TakoyakiController {
             setHumanCard(humanCard6, 5);
         }
         endGame(); 
-        takoyaki.giveHumanNewHand();
+        
         setHumanHand();
     }
 
@@ -134,7 +134,7 @@ public class TakoyakiController {
             setHumanCard(humanCard7, 6);
         }
         endGame(); 
-        takoyaki.giveHumanNewHand();
+        
         setHumanHand();
     }
 
@@ -148,7 +148,7 @@ public class TakoyakiController {
             setHumanCard(humanCard8, 7);
         }
         endGame(); 
-        takoyaki.giveHumanNewHand();
+        
         setHumanHand();
     }
 
@@ -162,7 +162,7 @@ public class TakoyakiController {
             setHumanCard(humanCard9, 8);
         }
         endGame(); 
-        takoyaki.giveHumanNewHand();
+        
         setHumanHand();
     }
 
@@ -176,7 +176,7 @@ public class TakoyakiController {
             setHumanCard(humanCard10, 9);
         }
         endGame(); 
-        takoyaki.giveHumanNewHand();
+        
         setHumanHand();
     }
 
