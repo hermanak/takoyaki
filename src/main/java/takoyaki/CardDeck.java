@@ -39,6 +39,9 @@ public class CardDeck {
             }
         }
 
+        if(m % 2 == 1){
+            throw new IllegalArgumentException("stokke metodene krever partall av card så kan bare legge til jokere på heltall");
+        }
         for (int i = 0; i < m; i++) {
             Card newCard = new Card();
             cards.add(newCard);
@@ -100,7 +103,10 @@ public class CardDeck {
 
     public void giveNewHand(Player hand){
         if(cards.size() == 0){
-            throw new IllegalArgumentException("Det er tomt for kort!");
+            throw new IllegalStateException("Det er tomt for kort!");
+        }
+        if(hand.getHand() != null) {
+            throw new IllegalArgumentException("Player har fortsatt kort på hånden!");
         }
         this.getCard(this.getCardCount() - 1).flipCardUp();
         hand.setHand(this.getCard(this.getCardCount() - 1));
