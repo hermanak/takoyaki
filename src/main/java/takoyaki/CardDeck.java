@@ -88,7 +88,7 @@ public class CardDeck {
         }
     }
 
-    public void dealBeforeStart(Player cardsAtTable){
+    public void dealCardsAtTable(Player cardsAtTable){
         if(cardsAtTable.getCardsAtTable().size() != 0){
             throw new IllegalArgumentException("Det har allerede blitt gitt kort!");
         }

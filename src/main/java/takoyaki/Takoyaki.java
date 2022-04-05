@@ -27,9 +27,9 @@ public class Takoyaki {
         // gir datamaskin hånden
         this.getCardDeck().giveNewHand(this.getComp());
         // gir spillerens kortene på bordet
-        this.getCardDeck().dealBeforeStart(this.getHuman());
+        this.getCardDeck().dealCardsAtTable(this.getHuman());
         // gir datmaskinens kortene på bordet
-        this.getCardDeck().dealBeforeStart(this.getComp());
+        this.getCardDeck().dealCardsAtTable(this.getComp());
 
     }
 

@@ -87,11 +87,13 @@ public class CardDeckTest {
 
 	@Test
 	@DisplayName("Sjekk at kort ble fordelt til Player riktig") 
-	public void testDealBeforeStart() {
+	public void testDealCardsAtTable() {
 		// tenket å lage en liste av kortene som fjernes av koden
 		// deretter sammenligne de kortene med player sine
 		// burde jeg også sjekke at kortene er borte fra den originale bunken?
 		
-		gameCardDeck.dealBeforeStart(player);
+		gameCardDeck.dealCardsAtTable(player);
+
+		
 	}
 }

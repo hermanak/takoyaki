@@ -173,10 +173,10 @@ public class SaveHandler implements ISaveHandler {
                                 tempCard = null;
                             }
                             else {
+                                // koden klarer ikke å godta at hand er joker
                                 if(type == 'J') {
                                     // her er Joker oppe fordi det gir ikke mening at man ikke kan se hånden
                                     hand = new Card(true);
-                                    cards.add(tempCard);
                                     type = ' ';
                                 }
                                 else {
@@ -189,7 +189,7 @@ public class SaveHandler implements ISaveHandler {
                             handChecked = true;
                         }
                         // definerer discard
-                        else if (cards.size() == 10 ) {
+                        else if (cards.size() >= 10 ) {
                             // n blir ikke brukt andre steder og type er en enkel char så det er lettere å sammenligne det direkte
                             if(type == 'n'){
                                 tempCard = null;
@@ -303,12 +303,13 @@ public class SaveHandler implements ISaveHandler {
 
     // brukes til å teste, slett senere
     public static void main(String[] args) throws FileNotFoundException {
+        
         Takoyaki t1 = new Takoyaki();
         Takoyaki t2 = new Takoyaki();
         Takoyaki t3 = null;
 
         SaveHandler s1 = new SaveHandler();;
-
+        /*
         s1.save("save_file", t1);
         s1.save("save_file1", t2);
         s1.save("xd", t1);
@@ -330,6 +331,19 @@ public class SaveHandler implements ISaveHandler {
         
         System.out.println("ComputerHand: " + t3.getComp().getHand());
         System.out.println("Discard: " + t3.getComp().getDiscardedPile());
-    
+        */
+
+        // koden her er for å løse problemet med å laste og lagre joker for hand.
+        Takoyaki t4 = new Takoyaki();
+        Takoyaki t5;
+        t4.getHuman().setHand(new Card(true));
+
+        System.out.println("human hand: " + t4.getHuman().getHand());
+        s1.save("save_file40", t4);
+
+        t5 = s1.load("save_file40");
+
+        System.out.println("human hand: " + t5.getHuman().getHand());
+
     }
 }
