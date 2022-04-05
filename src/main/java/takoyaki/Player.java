@@ -72,8 +72,6 @@ public class Player {
                     hand = cardsAtTable.get(position - 1);
                     hand.flipCardUp();
                     this.setCardAtTable(position - 1, temp);
-
-                    System.out.println("Byttet kort");
                 }
             }
         } 

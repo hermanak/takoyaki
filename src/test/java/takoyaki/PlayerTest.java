@@ -23,10 +23,10 @@ public class PlayerTest {
         for (int i = 0; i < 10; i++) {
 			cardsAtTable.add(cardDeck.getCard(cardDeck.getCardCount() - (i + 1)));
 		}
-        
+
         // skal bruke give new hand til å fjerne 
-        discardedPile = cardDeck.getCard(cardDeck.getCardCount() - 12);
-        hand = cardDeck.getCard(cardDeck.getCardCount() - 13);
+        discardedPile = cardDeck.getCard(cardDeck.getCardCount() - 11);
+        hand = cardDeck.getCard(cardDeck.getCardCount() - 12);
 
         player = new Player();
     }
@@ -61,13 +61,35 @@ public class PlayerTest {
     }
 
     @Test
-	@DisplayName("Sjekker at kort blir lagt til card at table ")
+	@DisplayName("Sjekker at kort blir lagt til man bytter kort når man har en ")
 	public void testSwitchCard() {
         Assertions.assertThrows(IllegalStateException.class, () -> {
 			player.switchCard(1);
 		}, "Cards må ha blitt delt før man kan bytte dem");
 
+        cardDeck.dealCardsAtTable(player);
+        // må lure cardDeck til å gi hand to ganger slik at den stemmer overens med hand som har blitt gitt tidligere
+        cardDeck.giveNewHand(player);
+        player.setHand(null);
+        cardDeck.giveNewHand(player);
+        assertEquals(player.getHand(), hand);
+        // player.getHand() er "C4" som er mulig å bytte
+        player.switchCard(player.getHand().getFace());
+        assertNotEquals(player.getHand(), hand);
 
+        // hand endres til å passe med player for testing av senere kode
+        hand = player.getHand();
+        // player.getHand() er "C12" kan ikke byttes for noen plasser
+        for (int i = 0; i < 10; i++) {
+            player.switchCard(i+1);
+        }
+        assertEquals(player.getHand(), hand);
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			player.switchCard(-1);
+		}, "Ingen kort bør være der");
     }
 
+
+    
 }
