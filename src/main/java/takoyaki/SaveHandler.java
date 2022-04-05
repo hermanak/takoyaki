@@ -26,7 +26,7 @@ public class SaveHandler implements ISaveHandler {
                     writeCardDeck(writer, card, index);
                 }
             }
-            writer.println("!"); // har den for å summere listen sammen
+            writer.println("! slutt på cardDeck"); // har den for å summere listen sammen
             writer.println("# human");
 
             // skriver kortene på bordet for human
@@ -71,7 +71,7 @@ public class SaveHandler implements ISaveHandler {
             }
             
 
-            writer.println("!"); // har den for å summere listen sammen
+            writer.println("!  slutt på human"); // har den for å summere listen sammen
 
             writer.println("# computer");
             // skriver kortene på bordet for computer
@@ -117,7 +117,7 @@ public class SaveHandler implements ISaveHandler {
             }
             
 
-            writer.println("!"); // har den for å summere listen sammen
+            writer.println("!  slutt på computer"); // har den for å summere listen sammen
 
 		}
     }

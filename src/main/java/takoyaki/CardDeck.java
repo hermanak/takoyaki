@@ -72,6 +72,7 @@ public class CardDeck {
         }
     }
 
+    // denne koden klarer ikke å håndtere kortstokk med oddetall. Er ikke et problem for proskjetet siden to jokere brukes alltid
     public void switchTopAndBottom() {
         int size = cards.size();
         List<Card> first = new ArrayList<>(cards.subList(0, (size + 1)/2));
@@ -108,12 +109,19 @@ public class CardDeck {
 
     public static void main(String[] args) {
         CardDeck stokk1 = new CardDeck(13, 0);
-        System.out.println(stokk1.getCardCount());
+        //System.out.println(stokk1.getCardCount());
 
         CardDeck stokk2 = new CardDeck(13, 2);
-        System.out.println(stokk2.getCardCount());
-        System.out.println(stokk2.getCard(0));
-        System.out.println(stokk2.getCard(53));
+        //System.out.println(stokk2.getCardCount());
+        //System.out.println(stokk2.getCard(0));
+        //System.out.println(stokk2.getCard(53));
+
+        CardDeck stokk3 = new CardDeck(2, 2);
+        stokk3.switchTopAndBottom();
+
+        for (int i = 0; i < stokk3.getCardCount(); i++) {
+            System.out.println(stokk3.getCard(i));
+        }
 
     }
 }

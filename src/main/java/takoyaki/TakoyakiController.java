@@ -163,7 +163,9 @@ public class TakoyakiController {
     @FXML
     private void handleLoad() throws FileNotFoundException  {
         takoyaki = saveHandler.load(filename.getText());
-        setAllCards(); 
+        setAllCards();
+        // hvis spillet før man lastet inn var fulllført så må man fjerne resultat teksten
+        victor.setText(""); 
     }
 
     @FXML

@@ -41,9 +41,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox prefHeight="416.0" prefWidth="883.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="takoyaki.TakoyakiController">
+<VBox prefHeight="416.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="takoyaki.TakoyakiController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="416.0" prefWidth="898.0" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="416.0" prefWidth="907.0" VBox.vgrow="ALWAYS">
       <children>
             <!-- knappene for spillet -->
             <Button fx:id="humanCard1" defaultButton="true" layoutX="72.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonClick1" prefHeight="86.0" prefWidth="48.0" text="1" />
@@ -58,8 +58,8 @@
             <Button fx:id="humanCard10" defaultButton="true" layoutX="614.0" layoutY="301.0" mnemonicParsing="false" onAction="#handleButtonClick10" prefHeight="86.0" prefWidth="48.0" text="10" />
             
             <!-- rektangler som skal forestille kort -->
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="86.0" layoutX="24.0" layoutY="177.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="86.0" layoutX="667.0" layoutY="177.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="86.0" layoutX="24.0" layoutY="157.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="86.0" layoutX="667.0" layoutY="198.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="72.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="131.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="196.0" layoutY="50.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
@@ -84,9 +84,9 @@
             <Label fx:id="computerCard9" layoutX="563.0" layoutY="74.0" prefHeight="38.0" prefWidth="40.0" text="CCard9" />
             <Label fx:id="computerCard10" layoutX="622.0" layoutY="74.0" prefHeight="38.0" prefWidth="40.0" text="CCard10" />
 
-
-            <Label fx:id="humanDiscardPile" layoutX="35.0" layoutY="212.0" prefHeight="17.0" prefWidth="27.0" text="HDiscard" />
-            <Label fx:id="computerDiscardPile" layoutX="678.0" layoutY="212.0" prefHeight="17.0" prefWidth="27.0" text="CDiscard" />
+            
+            <Label fx:id="computerDiscardPile" layoutX="35.0" layoutY="192.0" prefHeight="17.0" prefWidth="27.0" text="CDiscard" />
+            <Label fx:id="humanDiscardPile" layoutX="678.0" layoutY="232.0" prefHeight="17.0" prefWidth="27.0" text="HDiscard" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#26f2eb" height="86.0" layoutX="419.0" layoutY="212.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
             <Label fx:id="humanHand" layoutX="430.0" layoutY="247.0" text="HHand" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="86.0" layoutX="296.0" layoutY="143.0" stroke="BLACK" strokeType="INSIDE" width="48.0" />
@@ -100,10 +100,10 @@
             </Label>
 
             <!-- laster inn og lagrer spill -->
-            <Button layoutX="719.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleLoad" text="Load" />
-            <Button layoutX="775.0" layoutY="338.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
-            <TextField fx:id="filename" layoutX="715.0" layoutY="292.0" prefHeight="27.0" prefWidth="160.0" promptText="save_file" text="save_file" />
-            <Text layoutX="715.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filename:" />
+            <Button layoutX="737.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleLoad" text="Load" />
+            <Button layoutX="793.0" layoutY="341.0" mnemonicParsing="false" onAction="#handleSave" text="Save" />
+            <TextField fx:id="filename" layoutX="733.0" layoutY="295.0" prefHeight="27.0" prefWidth="160.0" promptText="save_file" text="save_file" />
+            <Text layoutX="733.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filename:" />
             
             
       </children>
