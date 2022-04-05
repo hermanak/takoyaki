@@ -48,8 +48,8 @@ public class Player {
     }
 
     public void addCardAtTable(Card card1) {
-        if(cardsAtTable.size() > 10){
-            throw new IllegalArgumentException("Det er for mange kort!");
+        if(cardsAtTable.size() >= 10){
+            throw new IllegalStateException("Det er for mange kort!");
         }
         cardsAtTable.add(card1);
     }
@@ -61,8 +61,9 @@ public class Player {
 
     public void switchCard(int position) {
         if(hand == null || cardsAtTable == null){
-            throw new IllegalArgumentException("Kort er ikke fordelt");
+            throw new IllegalStateException("Kort er ikke fordelt");
         }
+        // spillet starter med kort 1, ikke null. Så for å lettere samsvare med spillet regner jeg ut posisjonen minus 1
         if(position > 0 && position < 11) {
             if(position == hand.getFace() || hand.getFace() == 0) {
                 if(!cardAlreadyFlipped(position)){
@@ -113,7 +114,4 @@ public class Player {
         }
         return true;
     }
-
-
-
 }
