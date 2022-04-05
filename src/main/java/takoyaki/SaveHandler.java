@@ -154,14 +154,11 @@ public class SaveHandler implements ISaveHandler {
                         if(type == 'J') {
                             tempCard = new Card();
                             cards.add(tempCard);
-                            type = ' ';
                         }
                         else {
                             value = scanner.nextInt();
                             tempCard = new Card(type, value);
                             cards.add(tempCard);
-                            type = ' ';
-                            value = -1;
                         }
                     }
                     // koden for å finne kortene human og computer skal ha. Først defineres human og deretter computer
@@ -177,13 +174,10 @@ public class SaveHandler implements ISaveHandler {
                                 if(type == 'J') {
                                     // her er Joker oppe fordi det gir ikke mening at man ikke kan se hånden
                                     hand = new Card(true);
-                                    type = ' ';
                                 }
                                 else {
                                     value = scanner.nextInt();
                                     hand = new Card(type, value, true);;
-                                    type = ' ';
-                                    value = -1;
                                 } 
                             }            
                             handChecked = true;
@@ -196,10 +190,7 @@ public class SaveHandler implements ISaveHandler {
                             }
                             else {
                                 value = scanner.nextInt();
-                                tempCard = new Card(type, value, true);;
-                                type = ' ';
-                                value = -1;
-                                
+                                tempCard = new Card(type, value, true);;                               
                             }
                             // slik at koden kjøres riktig flere ganger
                             handChecked = false;
@@ -212,16 +203,12 @@ public class SaveHandler implements ISaveHandler {
                                 faceUp = scanner.nextBoolean();
                                 tempCard = new Card(faceUp);
                                 cards.add(tempCard);
-                                type = ' ';
                             }
                             else {
                                 value = scanner.nextInt();
                                 faceUp = scanner.nextBoolean();
                                 tempCard = new Card(type, value, faceUp);
                                 cards.add(tempCard);
-                                type = ' ';
-                                value = -1;
-                                faceUp = null;
                             }    
                         }
                     }
