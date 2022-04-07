@@ -14,6 +14,16 @@ public class Player {
 
     // brukes til å lagre og laste inn
     public Player(Card hand, Card discardedPile, List<Card> cardsAtTable) {
+        if(hand != null){
+            if(!hand.getFaceUp()){
+                throw new IllegalArgumentException("Hand skal alltid være synlige");
+            }
+        }
+        if(discardedPile != null){
+            if(!discardedPile.getFaceUp()){
+                throw new IllegalArgumentException("discardedPile skal alltid være synlige");
+            }
+        }
         this.hand = hand;
         this.discardedPile = discardedPile;
         this.cardsAtTable = cardsAtTable;
@@ -71,7 +81,7 @@ public class Player {
                     temp = hand;
                     hand = cardsAtTable.get(position - 1);
                     hand.flipCardUp();
-                    this.setCardAtTable(position - 1, temp);
+                    setCardAtTable(position - 1, temp);
                 }
             }
         } 
@@ -84,7 +94,7 @@ public class Player {
         if(hand != null) {
             // 0 betyr at det er joker som må ikke kastes!
             if(hand.getFace() != 0) {
-                // må skjekke dette først siden cardAlreadyFlipped fungerer bare når 
+                // må skjekke dette først siden cardAlreadyFlipped fungerer bare når kortet er under 11
                 if(hand.getFace() > 10 ){
                     discardedPile = hand;
                     hand = null;

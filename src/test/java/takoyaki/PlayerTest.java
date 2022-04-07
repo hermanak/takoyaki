@@ -24,10 +24,12 @@ public class PlayerTest {
 			cardsAtTable.add(cardDeck.getCard(cardDeck.getCardCount() - (i + 1)));
 		}
 
-        // skal bruke give new hand til å fjerne 
-        discardedPile = cardDeck.getCard(cardDeck.getCardCount() - 11);
-        hand = cardDeck.getCard(cardDeck.getCardCount() - 12);
-
+        // må gis egne verdier. Dette er fordi å bruke flipCard mens de fortsatt befinner seg i cardDeck skaper problemer man ellers ikke møter
+        discardedPile = new Card('C',5);
+        discardedPile.flipCardUp();
+        hand = new Card('C',4);
+        hand.flipCardUp();
+        
         player = new Player();
     }
 
@@ -47,11 +49,16 @@ public class PlayerTest {
         assertEquals(player.getHand(), hand);
         assertEquals(player.getDiscardedPile(), discardedPile);
         assertEquals(player.getCardsAtTable(), cardsAtTable);
+
+        hand = new Card('C', 4, false);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			player = new Player(hand, discardedPile, cardsAtTable);
+		}, "Ingen slike spill bør ha blitt lagret");
     }
 
     @Test
 	@DisplayName("Sjekker at kort blir lagt til card at table ")
-	public void testAddCardAtTable() {
+	public void testAddCardsAtTable() {
         cardDeck.dealCardsAtTable(player);
         assertEquals(player.getCardsAtTable(), cardsAtTable);
 
@@ -68,14 +75,22 @@ public class PlayerTest {
 		}, "Cards må ha blitt delt før man kan bytte dem");
 
         cardDeck.dealCardsAtTable(player);
-        // må lure cardDeck til å gi hand to ganger slik at den stemmer overens med hand som har blitt gitt tidligere
+        // lurer cardDeck til åp gi hand to ganger slikat hand forsatt er C4 for å passe med resten av testkoden
         cardDeck.giveNewHand(player);
         player.setHand(null);
         cardDeck.giveNewHand(player);
+
+        hand = player.getHand();
+        // er ikke mulig å sammenligne kort direkte så må bruke toString() og getFaceUp()
         assertEquals(player.getHand(), hand);
+        assertEquals(player.getHand().getFaceUp(), true);
+        assertEquals(player.getCardAtTable(3).getFaceUp(), false);
+
         // player.getHand() er "C4" som er mulig å bytte
         player.switchCard(player.getHand().getFace());
         assertNotEquals(player.getHand(), hand);
+        assertEquals(player.getHand().getFaceUp(), true);
+        assertEquals(player.getCardAtTable(3).getFaceUp(), true);
 
         // hand endres til å passe med player for testing av senere kode
         hand = player.getHand();
@@ -90,6 +105,34 @@ public class PlayerTest {
 		}, "Ingen kort bør være der");
     }
 
+    @Test
+	@DisplayName("Sjekker at ubrukelig hand blir overført til discardePile")
+	public void testDiscardHand() {
+        player = new Player(hand, discardedPile, cardsAtTable);
+        // hand er C4 og kortet på posisjon 4 er fortsatt ned
+        player.discardHand();
+        assertEquals(player.getHand(), hand);
 
+        // bytter kortet på posisjon 4
+        player.switchCard(4);
+        hand = player.getHand();
+        // hand er nå C12 som vil bli kastet
+        player.discardHand();
+        assertEquals(player.getHand(), null);
+        assertEquals(player.getDiscardedPile(), hand);
+
+        // player vil få joker som aldri vil kastes
+        cardDeck.giveNewHand(player);
+        hand = player.getHand();
+        player.discardHand();
+        assertEquals(player.getHand(), hand);
+
+        // vil sjekke at en hand for en posisjon som allerede er snudd blir kastet
+        hand = new Card('S', 4, true);
+        player.setHand(hand);
+        player.discardHand();
+        assertEquals(player.getHand(), null);
+        assertEquals(player.getDiscardedPile(), hand);
+    }
     
 }

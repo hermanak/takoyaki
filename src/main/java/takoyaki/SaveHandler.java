@@ -128,6 +128,7 @@ public class SaveHandler implements ISaveHandler {
         Takoyaki t1 = null;
         CardDeck cD1 = null;
         Player player = null;
+        ComputerPlayer computerPlayer = null;
         List<Card> cards = new ArrayList<Card>();
         Card hand = null;
         Card tempCard = null;
@@ -229,9 +230,8 @@ public class SaveHandler implements ISaveHandler {
                         hand = null;
                     }
                     else {
-                        // trenger hjelp her
-                        player = new ComputerPlayer(hand, tempCard, cards);
-                        t1.setComp((ComputerPlayer) player);
+                        computerPlayer = new ComputerPlayer(hand, tempCard, cards);
+                        t1.setComp(computerPlayer);
                     }
                 }
                 

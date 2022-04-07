@@ -145,5 +145,7 @@ public class Takoyaki {
         t1.getHuman().switchCard(1);
         System.out.println(t1.getHuman().getHand());
         System.out.println(t1.getHuman().getCardsAtTable());
+
+        System.out.println(t1.getHuman().getCardAtTable(1).getFaceUp());
     }
 }
