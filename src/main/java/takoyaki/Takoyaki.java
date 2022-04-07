@@ -73,9 +73,6 @@ public class Takoyaki {
     }
 
     public void theAIMove() {
-        System.out.println("Startet");
-        System.out.println(humanTurn);
-        System.out.println("HumanHand: " + human.getHand());
         if(human.getHand() == null) {
             humanTurn = false;
             // gir maskinen ny Hand
@@ -83,7 +80,6 @@ public class Takoyaki {
                 cardDeck.giveNewHand(comp);
             }
         }
-        System.out.println(humanTurn);
 
         while(!humanTurn && !gameOver() && comp.getHand() != null) {  
             // hva maskinen skal gjøre med jokeren
@@ -100,14 +96,8 @@ public class Takoyaki {
                 comp.switchCard(comp.getHand().getFace());
             }   
 
-            System.out.println("ComputerHand" + comp.getHand());
-            System.out.println(comp.getCardsAtTable());
-
             // kaster ubrukelig hand
             comp.discardHand();
-
-            System.out.println("ComputerHand etter mulig discard" + comp.getHand());
-            System.out.println(comp.getCardsAtTable());
         }
 
         // for å gjøre humanTurn sann igjen
@@ -115,11 +105,8 @@ public class Takoyaki {
 
         // gir spilleren ny Hand
         if(human.getHand() == null && !gameOver()){
-            System.out.println("Gir ny hand");
             cardDeck.giveNewHand(human);
         }
-        
-        System.out.println("Ferdig");
     }
 
     // hentet fra her: https://mkyong.com/java/java-generate-random-integers-in-a-range/
