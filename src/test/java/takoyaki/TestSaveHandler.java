@@ -55,14 +55,8 @@ public class TestSaveHandler {
     }
 
     @Test
-	@DisplayName("Sjekker at metoden laster inn forventet Takoyaki")
-	public void testLoad() {
-
-    }
-
-    @Test
 	@DisplayName("Sjekker at SaveHandler kan lagre en Takoyaki og laste den inn igjen")
-	public void testSaveAndLoad() throws FileNotFoundException {
+	public void testLoad() throws FileNotFoundException {
         t1 = new Takoyaki();
         sH1 = new SaveHandler();
 
