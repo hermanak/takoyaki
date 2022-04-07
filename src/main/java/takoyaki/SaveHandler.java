@@ -296,7 +296,7 @@ public class SaveHandler implements ISaveHandler {
         Takoyaki t3 = null;
 
         SaveHandler s1 = new SaveHandler();;
-        /*
+        
         s1.save("save_file", t1);
         s1.save("save_file1", t2);
         s1.save("xd", t1);
@@ -318,7 +318,6 @@ public class SaveHandler implements ISaveHandler {
         
         System.out.println("ComputerHand: " + t3.getComp().getHand());
         System.out.println("Discard: " + t3.getComp().getDiscardedPile());
-        */
 
         // koden her er for å løse problemet med å laste og lagre joker for hand.
         Takoyaki t4 = new Takoyaki();
