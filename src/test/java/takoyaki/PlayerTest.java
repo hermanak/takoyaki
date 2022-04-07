@@ -75,9 +75,8 @@ public class PlayerTest {
 		}, "Cards må ha blitt delt før man kan bytte dem");
 
         cardDeck.dealCardsAtTable(player);
-        // lurer cardDeck til åp gi hand to ganger slikat hand forsatt er C4 for å passe med resten av testkoden
-        cardDeck.giveNewHand(player);
-        player.setHand(null);
+        
+
         cardDeck.giveNewHand(player);
 
         hand = player.getHand();
@@ -86,11 +85,11 @@ public class PlayerTest {
         assertEquals(player.getHand().getFaceUp(), true);
         assertEquals(player.getCardAtTable(3).getFaceUp(), false);
 
-        // player.getHand() er "C4" som er mulig å bytte
+        // player.getHand() er "C5" som er mulig å bytte
         player.switchCard(player.getHand().getFace());
         assertNotEquals(player.getHand(), hand);
         assertEquals(player.getHand().getFaceUp(), true);
-        assertEquals(player.getCardAtTable(3).getFaceUp(), true);
+        assertEquals(player.getCardAtTable(4).getFaceUp(), true);
 
         // hand endres til å passe med player for testing av senere kode
         hand = player.getHand();

@@ -20,7 +20,7 @@ public class TestSaveHandler {
 		Assertions.assertEquals(card.getFaceUp(), faceUp);
 	}
 
-    private void checkCardCardDeck(CardDeck cD1, CardDeck cD2) {
+    private void checkCardDeck(CardDeck cD1, CardDeck cD2) {
 
         for (int i = 0; i < cD1.getCardCount(); i++) {
             checkCardWithFaceUP(cD1.getCard(i), 
@@ -31,7 +31,15 @@ public class TestSaveHandler {
         }
 	}
 
-    
+    private void checkPlayer(Player p1, Player p2) {
+        for (int i = 0; i < 10; i++) {
+            checkCardWithFaceUP(p1.getCardAtTable(i), 
+            p2.getCardAtTable(i).getSuit(), 
+            p2.getCardAtTable(i).getFace(), 
+            p2.getCardAtTable(i).getFaceUp()
+            );
+        }
+    }
 
     /*
     @BeforeEach
@@ -60,10 +68,10 @@ public class TestSaveHandler {
 
         sH1.save("save_file", t1);
 
-        checkCardCardDeck(sH1.load("save_file").getCardDeck(), t1.getCardDeck());
+        checkCardDeck(sH1.load("save_file").getCardDeck(), t1.getCardDeck());
 
-        //assertEquals(sH1.load("save_file").getCardDeck(), t1.getCardDeck());
+        checkPlayer(sH1.load("save_file").getHuman(), t1.getHuman());
+        checkPlayer(sH1.load("save_file").getComp(), t1.getComp());
 
-        //assertEquals(sH1.load("save_file"), t1);
     }
 }
