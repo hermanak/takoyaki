@@ -41,12 +41,11 @@ public class TestSaveHandler {
         }
     }
 
-    /*
     @BeforeEach
 	public void setup() {
+        t1 = new Takoyaki();
         sH1 = new SaveHandler();
     }
-    */
 
     @Test
 	@DisplayName("Sjekker at metoden skriver ut forventet liste")
@@ -55,11 +54,9 @@ public class TestSaveHandler {
     }
 
     @Test
-	@DisplayName("Sjekker at SaveHandler kan lagre en Takoyaki og laste den inn igjen")
+	@DisplayName("Sjekker at SaveHandler kan laste inn en Takoyaki")
 	public void testLoad() throws FileNotFoundException {
-        t1 = new Takoyaki();
-        sH1 = new SaveHandler();
-
+        
         sH1.save("save_file", t1);
 
         checkCardDeck(sH1.load("save_file").getCardDeck(), t1.getCardDeck());

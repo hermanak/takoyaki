@@ -289,16 +289,6 @@ public class TakoyakiController {
         
     }
 
-    // unødvenig fordi AI oppdateres bare etter ferdig
-    private void throwUselessComputerHand() {
-        takoyaki.getComp().discardHand();
-        setComputerHand();
-        if(takoyaki.getComp().getDiscardedPile() != null) {
-            setComputerDiscard();
-            setComputerHand();
-        }    
-    }
-
     private void updateDeck() {
         deck.setText(String.valueOf(takoyaki.getCardDeck().getCardCount()));
     }
