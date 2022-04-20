@@ -240,10 +240,6 @@ public class SaveHandler implements ISaveHandler {
             }
         }
 
-        if(t1.getComp().equals(null)){
-            throw new IllegalArgumentException("Filen som ble gitt er ikke valid");
-        }
-
         return t1;
     }
 

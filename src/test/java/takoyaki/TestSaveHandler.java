@@ -8,17 +8,17 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
-import java.util.List;
 
 public class TestSaveHandler {
+    private String tempPath;
     private Takoyaki t1;
     private SaveHandler sH1;
-    private List<Card> cards = new ArrayList<Card>();
 
     private void checkCardWithFaceUP(Card card, char suit, int face, Boolean faceUp) {
 		Assertions.assertEquals(card.getSuit(), suit);
@@ -100,12 +100,56 @@ public class TestSaveHandler {
 			fail("Klarte ikk å lagre filen");
 		}
 
+        try {
+		    sH1.save("save_file_test", t1);
+		} catch (FileNotFoundException e) {
+			fail("Klarte ikk å lagre filen");
+		}
+
         byte[] testFile = null, newFile = null;
 
+        // må fjerne første / for at koden skal fungere
+        tempPath = SaveHandler.getFilePath("save_file").substring(1);
+        
 
+        try {
+			testFile = Files.readAllBytes(Path.of(tempPath));
+		} catch (IOException e) {
+			fail("Could not load test file");
+		}
+
+        // må fjerne første / for at koden skal fungere
+        tempPath = SaveHandler.getFilePath("save_file_test").substring(1);
+
+		try {
+			newFile = Files.readAllBytes(Path.of(tempPath));
+		} catch (IOException e) {
+			fail("Could not load saved file");
+		}
+        
 
         assertNotNull(testFile);
 		assertNotNull(newFile);
+
+		assertTrue(Arrays.equals(testFile, newFile));
+
+		// tvinger AI til å handle slik at filene blir forskjellige
+		t1.setHumanTurn(false);
+		t1.theAIMove();
+
+		try {
+		    sH1.save("save_file_test", t1);
+		} catch (FileNotFoundException e) {
+			fail("Klarte ikk å lagre filen");
+		}
+
+		try {
+			newFile = Files.readAllBytes(Path.of(tempPath));
+		} catch (IOException e) {
+			fail("Could not load saved file");
+		}
+
+		assertFalse(Arrays.equals(testFile, newFile));
     }
 
     @AfterAll
