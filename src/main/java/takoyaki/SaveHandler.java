@@ -11,7 +11,9 @@ public class SaveHandler implements ISaveHandler {
     
     @Override
     public void save(String filename, Takoyaki game) throws FileNotFoundException {
-
+        if(filename.endsWith("empty")) {
+            throw new IllegalArgumentException("empty.txt skal bare brukes for at saves dukker opp i target. Den skal være tom og ubrukelig");
+        }
         try (PrintWriter writer = new PrintWriter(new File(getFilePath(filename)))) {
             int deckSize = 0;
 
@@ -237,6 +239,11 @@ public class SaveHandler implements ISaveHandler {
                 
             }
         }
+
+        if(t1.getComp().equals(null)){
+            throw new IllegalArgumentException("Filen som ble gitt er ikke valid");
+        }
+
         return t1;
     }
 
@@ -265,13 +272,11 @@ public class SaveHandler implements ISaveHandler {
         writer.println(c1.getFaceUp());
     }
     
-
+    
 	public static String getFilePath(String filename) {
         // lagret ting på skyen der mellomrom skapte problemer
         String tempString = SaveHandler.class.getResource("saves/").getFile();
         tempString = insertSpace(tempString);
-        System.out.println(tempString);
-        System.out.println(filename);
         // Onedrive liker ikke lagringsfilene
 		return tempString + filename + ".txt";
 	}
@@ -291,12 +296,16 @@ public class SaveHandler implements ISaveHandler {
     // brukes til å teste, slett senere
     public static void main(String[] args) throws FileNotFoundException {
         
+        
+
         Takoyaki t1 = new Takoyaki();
         Takoyaki t2 = new Takoyaki();
         Takoyaki t3 = null;
 
         SaveHandler s1 = new SaveHandler();;
-        
+
+        s1.load("empty");
+
         s1.save("save_file", t1);
         s1.save("save_file1", t2);
         s1.save("xd", t1);
