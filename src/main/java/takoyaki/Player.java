@@ -44,7 +44,7 @@ public class Player {
     }
 
     // gir et bestemt kort
-    public Card getCardAtTable(int n){
+    public Card getCardAtTable(int n) {
         return this.cardsAtTable.get(n);
     }
 
@@ -64,7 +64,7 @@ public class Player {
         cardsAtTable.add(card1);
     }
 
-    public void setCardAtTable(int n, Card card1) {
+    private void setCardAtTable(int n, Card card1) {
         cardsAtTable.set(n, card1);
     }
 
