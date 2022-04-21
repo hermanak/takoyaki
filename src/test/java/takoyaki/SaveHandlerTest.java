@@ -15,7 +15,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class TestSaveHandler {
+public class SaveHandlerTest {
     private String tempPath;
     private Takoyaki t1;
     private SaveHandler sH1;
@@ -106,14 +106,14 @@ public class TestSaveHandler {
 			fail("Klarte ikk å lagre filen");
 		}
 
-        byte[] testFile = null, newFile = null;
+        byte[] testFile1 = null, testFile2 = null;
 
         // må fjerne første / for at koden skal fungere
         tempPath = SaveHandler.getFilePath("save_file").substring(1);
         
 
         try {
-			testFile = Files.readAllBytes(Path.of(tempPath));
+			testFile1 = Files.readAllBytes(Path.of(tempPath));
 		} catch (IOException e) {
 			fail("Could not load test file");
 		}
@@ -122,16 +122,16 @@ public class TestSaveHandler {
         tempPath = SaveHandler.getFilePath("save_file_test").substring(1);
 
 		try {
-			newFile = Files.readAllBytes(Path.of(tempPath));
+			testFile2 = Files.readAllBytes(Path.of(tempPath));
 		} catch (IOException e) {
 			fail("Could not load saved file");
 		}
         
 
-        assertNotNull(testFile);
-		assertNotNull(newFile);
+        assertNotNull(testFile1);
+		assertNotNull(testFile2);
 
-		assertTrue(Arrays.equals(testFile, newFile));
+		assertTrue(Arrays.equals(testFile1, testFile2));
 
 		// tvinger AI til å handle slik at filene blir forskjellige
 		t1.setHumanTurn(false);
@@ -144,12 +144,12 @@ public class TestSaveHandler {
 		}
 
 		try {
-			newFile = Files.readAllBytes(Path.of(tempPath));
+			testFile2 = Files.readAllBytes(Path.of(tempPath));
 		} catch (IOException e) {
 			fail("Could not load saved file");
 		}
 
-		assertFalse(Arrays.equals(testFile, newFile));
+		assertFalse(Arrays.equals(testFile1, testFile2));
     }
 
     @AfterAll

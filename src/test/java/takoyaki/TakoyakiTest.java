@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class TestTakoyaki {
+public class TakoyakiTest {
     private Takoyaki t1;
     private CardDeck cardDeck;
     private Card compHand;
