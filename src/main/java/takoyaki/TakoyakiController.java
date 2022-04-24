@@ -42,11 +42,9 @@ public class TakoyakiController {
             takoyaki.getHuman().switchCard(1);
             setHumanHand();
             setHumanCard(humanCard1, 0);
-            System.out.println("HumanHand: " + takoyaki.getHuman().getHand());
             throwUselessHumanHand();
             setHumanCard(humanCard1, 0);
         }   
-        System.out.println("HumanHand: " + takoyaki.getHuman().getHand());
         endGame();
     }
 
@@ -282,7 +280,6 @@ public class TakoyakiController {
         takoyaki.getHuman().discardHand();
         setHumanHand();
         if(takoyaki.getHuman().getDiscardedPile() != null) {
-            System.out.println("Nytt kast");
             setHumanDiscard();
         }
         setAfterAI(); 
