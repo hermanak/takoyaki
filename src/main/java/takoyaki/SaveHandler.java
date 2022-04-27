@@ -240,6 +240,8 @@ public class SaveHandler implements ISaveHandler {
             }
         }
 
+        validNewGame(t1);
+
         return t1;
     }
 
@@ -287,6 +289,32 @@ public class SaveHandler implements ISaveHandler {
         }
 
         return sb.toString();
+    }
+
+    // sier om noen trekk er gjort i spillet eller ikke. Brukes for å forhindre lasting av ugyldige spill
+    private void validNewGame(Takoyaki t1) { 
+        // så lenge menneskets discardPile er tom er det et nytt spill
+        if(t1.getHuman().getDiscardedPile() == null){
+            if(t1.getComp().getDiscardedPile() != null) {
+                throw new IllegalArgumentException("computer sin discardPile skal være tom ved starten av et spill");
+            }
+
+            for (Card c : t1.getHuman().getCardsAtTable()) {
+                if(c.getFaceUp()){
+                    throw new IllegalArgumentException("Ingen kort skal være snudd på starten");
+                }
+            }
+
+            for (Card c : t1.getComp().getCardsAtTable()) {
+                if(c.getFaceUp()){
+                    throw new IllegalArgumentException("human skal alltid ha gjort et trekk før computer. Dette spillet er ikke gyldig");
+                }
+            }
+
+            if(t1.getHuman().getHand() == null || t1.getComp().getHand() == null ){
+                throw new IllegalArgumentException("Alle skal ha et Card på Hand i starten");
+            }
+        }
     }
 
     // brukes til å teste, slett senere
