@@ -293,8 +293,16 @@ public class SaveHandler implements ISaveHandler {
 
     // sier om noen trekk er gjort i spillet eller ikke. Brukes for å forhindre lasting av ugyldige spill
     private void validNewGame(Takoyaki t1) { 
-        // så lenge menneskets discardPile er tom er det et nytt spill
-        if(t1.getHuman().getDiscardedPile() == null){
+        boolean start = true;
+
+        for (Card c1 : t1.getHuman().getCardsAtTable()) {
+            if(c1.getFaceUp()){
+                start = false;
+            }
+        }
+
+        // så lenge menneskets discardPile er tom eller ingen kort er snudd er det et nytt spill
+        if(t1.getHuman().getDiscardedPile() == null && !start){
             if(t1.getComp().getDiscardedPile() != null) {
                 throw new IllegalArgumentException("computer sin discardPile skal være tom ved starten av et spill");
             }
